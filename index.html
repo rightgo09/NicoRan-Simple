@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8">
+    <title>niteb</title>
+    <link rel="stylesheet" href="./reset.css" type="text/css">
+    <link rel="stylesheet" href="./style.css" type="text/css">
+  </head>
+  <body>
+    <header>
+      <h1>niteb</h1>
+    </header>
+    <div id="container">
+      <div id="main">
+        <div class="rankingtitle">
+          <h2>
+            <span>カテゴリ合算の総合ランキング(24時間)</span>
+          </h2>
+          <div class="submenu">
+            <div class="submenu-inner">
+              <span class="subtitle">毎日午前6時更新</span>
+            </div>
+          </div>
+        </div>
+        <div class="curvebox-body">
+          <ul class="ranking main-movies"></ul>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <p>
+        Powerd By <a href="http://www.nicovideo.jp/ranking/fav/daily/all?rss=2.0&lang=ja-jp">niconico Ranking RSS</a>,
+        <a href="https://developers.google.com/feed/">Google Feed API</a>
+        <br>
+        Created by <a href="https://twitter.com/rightgo09">rightgo09</a>
+      </p>
+    </footer>
+
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="https://www.google.com/jsapi"></script>
+		<script src="./main.js"></script>
+		<script>
+			google.load('feeds', '1');
+			function initialize() {
+				var feed = new google.feeds.Feed('http://www.nicovideo.jp/ranking/fav/daily/all?rss=2.0&lang=ja-jp');
+				feed.setNumEntries(100);
+				feed.load(function (result) {
+          if (result.error) return;
+          for (var i = 0, len = result.feed.entries.length; i < len; i++) {
+            var entry = result.feed.entries[i];
+            $('ul.main-movies').append(buildMovieBody(entry));
+					}
+				});
+			}
+			google.setOnLoadCallback(initialize);
+		</script>
+
+  </body>
+</html>

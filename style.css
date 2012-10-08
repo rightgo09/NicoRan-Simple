@@ -1,0 +1,142 @@
+* {
+  font: 100%/1.4 "Arial", "Helvetica", sans-serif;
+}
+header {
+  background-color: #000000;
+  color: #ffffff;
+}
+header h1 {
+  padding: 7px;
+}
+#container {
+  margin: 0px 20px;
+  padding: 0px 10px;
+  overflow: hidden;
+  zoom: 1;
+}
+#main h2 {
+  overflow: hidden;
+  font-weight: bold;
+  -webkit-border-top-left-radius: 7px;
+  -webkit-border-top-right-radius: 7px;
+  -moz-border-radius-topleft: 7px;
+  -moz-border-radius-topright: 7px;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+}
+#main div.rankingtitle {
+  margin-top: 15px;
+  position: relative;
+}
+#main div.rankingtitle h2 {
+  background-color: #000000;
+  padding-left: 15px;
+  color: #ffffff;
+  font-size: 1em;
+  margin: 0px;
+  position: relative;
+}
+#main div.rankingtitle h2 span {
+  display: block;
+  height: 34px;
+  line-height: 34px;
+  padding: 1px 0px;
+}
+#main div.rankingtitle div.submenu {
+  border: 1px solid #cccccc;
+  border-top-color: #6aa7dc;
+  border-top: 0px;
+  font-size: 80%;
+  background: #ffffff;
+}
+#main div.rankingtitle div.submenu div.submenu-inner {
+  background: #eeeeee;
+  border-top: 1px solid #ffffff;
+  margin: 0px 1px;
+  padding: 5px 9px 5px 0px;
+  overflow: hidden;
+  zoom: 1;
+}
+#main div.rankingtitle div.submenu div.submenu-inner span.subtitle {
+  padding: 1em;
+}
+div.curvebox-body {
+  border-right: 1px solid #cccccc;
+  border-left: 1px solid #cccccc;
+  border-bottom: 1px solid #cccccc;
+  overflow: hidden;
+  background: #ffffff;
+  zoom: 1;
+  -webkit-border-bottom-right-radius: 7px;
+  -webkit-border-bottom-left-radius: 7px;
+  -moz-border-radius-bottomright: 7px;
+  -moz-border-radius-bottomleft: 7px;
+  border-bottom-right-radius: 7px;
+  border-bottom-left-radius: 7px;
+}
+ul.ranking {
+  margin: 15px 5px 0px 0px;
+}
+ul.ranking li {
+  padding-left: 25px;
+  margin-bottom: 1em;
+  overflow: hidden;
+  zoom: 1;
+}
+ul.ranking li h3 {
+  background: transparent left 2px no-repeat;
+  padding-left: 20px;
+  margin-bottom: 5px;
+  margin-left: -20px;
+}
+ul.movie-info {
+  font-size: 80%;
+  margin: 5px 0px;
+  line-height: 1.6;
+}
+ul.movie-info li {
+  padding-left: 0;
+  margin-bottom: 0;
+  display: inline;
+}
+.timestamp {
+  color: #999999;
+}
+ul.ranking li blockquote {
+  word-wrap: break-word;
+  word-break: break-all;
+  white-space: normal;
+  max-width: 42em;
+  margin: 0 0 0.8em 0;
+  overflow: hidden;
+  color: #222;
+  font-size: 80%;
+  zoom: 1;
+}
+ul.ranking li div.movie-image {
+  float: left;
+  overflow: hidden;
+}
+ul.ranking li div.movie-image a {
+  margin: 3px 8px 5px 8px;
+  display: block;
+  overflow: hidden;
+  text-align: center;
+  vertical-align: middle;
+}
+ul.ranking li div.movie-image a img {
+  margin: auto;
+}
+ul.ranking li div.movie-image a.capture img {
+  max-height: 128px;
+  max-width: 128px;
+}
+blockquote cite a {
+  white-space: nowrap;
+}
+footer {
+  margin: 24px 10px;
+  text-align: center;
+  font-size: 70%;
+  color: #aaaaaa;
+}
