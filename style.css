@@ -1,6 +1,9 @@
 * {
   font: 100%/1.4 "Arial", "Helvetica", sans-serif;
 }
+body {
+  background-color: #e6e6ff;
+}
 header {
   background-color: #000000;
   color: #ffffff;
