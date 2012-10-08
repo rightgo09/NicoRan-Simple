@@ -4,12 +4,16 @@
 header {
   background-color: #000000;
   color: #ffffff;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
 }
 header h1 {
   padding: 7px;
 }
 #container {
-  margin: 0px 20px;
+  margin: 40px 20px;
   padding: 0px 10px;
   overflow: hidden;
   zoom: 1;
@@ -26,7 +30,6 @@ header h1 {
 }
 #main div.rankingtitle {
   margin-top: 15px;
-  position: relative;
 }
 #main div.rankingtitle h2 {
   background-color: #000000;
@@ -34,7 +37,6 @@ header h1 {
   color: #ffffff;
   font-size: 1em;
   margin: 0px;
-  position: relative;
 }
 #main div.rankingtitle h2 span {
   display: block;
