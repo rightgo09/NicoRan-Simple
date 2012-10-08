@@ -3,13 +3,14 @@ function buildMovieBody(entry) {
   var link = entry.link;
   var timestamp = extractTimestamp(entry.publishedDate);
   var content = entry.content;
+  var postDate = extractPostDate(content);
   var imgLink = extractImgLink(content);
   var description = extractDescription(content);
   var movieBody =
      '<h3><a href="'+link+'" target="_blank" class="movie-link" title="'+title+'">'+title+'</a></h3>'
     +'<ul class="movie-info">'
     +'<li class="tag" style="display:none"></li>'
-    +'<li class="timestamp">'+timestamp+'</li>'
+    +'<li class="postdate">'+postDate+' 投稿</li>'
     +'<li class="addbookmark" style="display:none"></li>'
     +'</ul>'
     +'<blockquote cite="'+link+'">'
@@ -32,6 +33,9 @@ function extractTimestamp(publishedDate) {
 }
 function zeroPad(num) {
   return (+num < 10 ? "0" : "") + num;
+}
+function extractPostDate(content) {
+  return content.match(/<strong>([^>]*)<\/strong> 投稿/)[1];
 }
 function extractImgLink(content) {
   return content.match(/<img.*?src="(.*?)"/)[1];
