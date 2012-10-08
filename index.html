@@ -36,24 +36,24 @@
       </p>
     </footer>
 
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-		<script src="https://www.google.com/jsapi"></script>
-		<script src="./main.js"></script>
-		<script>
-			google.load('feeds', '1');
-			function initialize() {
-				var feed = new google.feeds.Feed('http://www.nicovideo.jp/ranking/fav/daily/all?rss=2.0&lang=ja-jp');
-				feed.setNumEntries(100);
-				feed.load(function (result) {
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script src="https://www.google.com/jsapi"></script>
+    <script src="./main.js"></script>
+    <script>
+      google.load('feeds', '1');
+      function initialize() {
+        var feed = new google.feeds.Feed('http://www.nicovideo.jp/ranking/fav/daily/all?rss=2.0&lang=ja-jp');
+        feed.setNumEntries(100);
+        feed.load(function (result) {
           if (result.error) return;
           for (var i = 0, len = result.feed.entries.length; i < len; i++) {
             var entry = result.feed.entries[i];
             $('ul.main-movies').append(buildMovieBody(entry));
-					}
-				});
-			}
-			google.setOnLoadCallback(initialize);
-		</script>
+          }
+        });
+      }
+      google.setOnLoadCallback(initialize);
+    </script>
 
   </body>
 </html>
