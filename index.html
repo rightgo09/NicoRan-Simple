@@ -46,9 +46,10 @@
         feed.setNumEntries(100);
         feed.load(function (result) {
           if (result.error) return;
+          var $ul_main_movies = $('ul.main-movies');
           for (var i = 0, len = result.feed.entries.length; i < len; i++) {
             var entry = result.feed.entries[i];
-            $('ul.main-movies').append(buildMovieBody(entry));
+            $ul_main_movies.append(buildMovieBody(entry));
           }
         });
       }
