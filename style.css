@@ -95,11 +95,11 @@ ul.movie-info {
   line-height: 1.6;
 }
 ul.movie-info li {
-  padding-left: 0;
+  padding-left: 10px;
   margin-bottom: 0;
   display: inline;
 }
-.postdate {
+.postdate, .playcount, .commentcount {
   color: #999999;
 }
 ul.ranking li blockquote {

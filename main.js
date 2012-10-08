@@ -4,6 +4,8 @@ function buildMovieBody(entry) {
   var timestamp = extractTimestamp(entry.publishedDate);
   var content = entry.content;
   var postDate = extractPostDate(content);
+  var playCount = extractPlayCount(content);
+  var commentCount = extractCommentCount(content);
   var imgLink = extractImgLink(content);
   var description = extractDescription(content);
   var movieBody =
@@ -11,6 +13,8 @@ function buildMovieBody(entry) {
     +'<ul class="movie-info">'
     +'<li class="tag" style="display:none"></li>'
     +'<li class="postdate">'+postDate+' 投稿</li>'
+    +'<li class="playcount">再生数 '+playCount+'</li>'
+    +'<li class="commentcount">コメント '+commentCount+'</li>'
     +'<li class="addbookmark" style="display:none"></li>'
     +'</ul>'
     +'<blockquote cite="'+link+'">'
@@ -36,6 +40,12 @@ function zeroPad(num) {
 }
 function extractPostDate(content) {
   return content.match(/<strong>([^>]*)<\/strong> 投稿/)[1];
+}
+function extractPlayCount(content) {
+  return content.match(/再生：<strong>([^>]*)<\/strong>/)[1];
+}
+function extractCommentCount(content) {
+  return content.match(/コメント：<strong>([^>]*)<\/strong>/)[1];
 }
 function extractImgLink(content) {
   return content.match(/<img.*?src="(.*?)"/)[1];
