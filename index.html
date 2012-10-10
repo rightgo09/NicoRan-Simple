@@ -43,7 +43,7 @@
       google.load('feeds', '1');
       function initialize() {
         var feed = new google.feeds.Feed('http://www.nicovideo.jp/ranking/fav/daily/all?rss=2.0&lang=ja-jp');
-        feed.setNumEntries(100);
+        feed.setNumEntries(5);
         feed.load(function (result) {
           if (result.error) return;
           var $ul_main_movies = $('ul.main-movies');

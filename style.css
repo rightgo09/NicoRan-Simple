@@ -11,6 +11,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 10;
 }
 header h1 {
   padding: 7px;
@@ -121,6 +122,7 @@ ul.ranking li blockquote {
 ul.ranking li div.movie-image {
   float: left;
   overflow: hidden;
+  position: relative;
 }
 ul.ranking li div.movie-image a {
   margin: 3px 8px 5px 8px;
@@ -135,6 +137,13 @@ ul.ranking li div.movie-image a img {
 ul.ranking li div.movie-image a.capture img {
   max-height: 128px;
   max-width: 128px;
+}
+ul.ranking li div.movie-image div.movie-length {
+  position: absolute;
+  right: 9px;
+  bottom: 10px;
+  color: #ffffff;
+  background: rgba(0,0,0,0.6);
 }
 blockquote cite a {
   white-space: nowrap;

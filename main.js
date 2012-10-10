@@ -8,6 +8,7 @@ function buildMovieBody(entry) {
   var commentCount = extractCommentCount(content);
   var imgLink = extractImgLink(content);
   var description = extractDescription(content);
+  var movieLength = extractMovieLength(content);
   var movieBody =
      '<h3><a href="'+link+'" target="_blank" class="movie-link" title="'+title+'">'+title+'</a></h3>'
     +'<ul class="movie-info">'
@@ -18,7 +19,10 @@ function buildMovieBody(entry) {
     +'<li class="addbookmark" style="display:none"></li>'
     +'</ul>'
     +'<blockquote cite="'+link+'">'
-    +'<div class="movie-image"><a class="capture" href="'+link+'"><img src="'+imgLink+'" alt="'+title+'" title="'+title+'" class="movie-image"></a></div>'
+    +'<div class="movie-image">'
+    +'<div class="movie-length">'+movieLength+'</div>'
+    +'<a class="capture" href="'+link+'"><img src="'+imgLink+'" alt="'+title+'" title="'+title+'" class="movie-image"></a>'
+    +'</div>'
     +'<div style="overflow:auto;zoom:1">'+ellipsisDescription(description)
     +'<cite title="'+title+'"><a href="'+link+'" target="_blank" class="movie-link"> 続きを読む</a></cite>'
     +'</div>'
@@ -61,4 +65,7 @@ function ellipsisDescription(description) {
   else {
     return description;
   }
+}
+function extractMovieLength(content) {
+  return content.match(/<strong>(\d+:\d+)<\/strong>/)[1];
 }
