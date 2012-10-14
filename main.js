@@ -1,3 +1,39 @@
+(function() {
+  // Google feedsライブラリ読み込み
+  google.load('feeds', '1');
+
+  // ページ上部カテゴリアンカー
+  $('ul.nav>li>a')
+    // href="#"をセットしないとポインタがクリック可にならない
+    .each(function () {
+      $(this).attr('href', '#');
+    })
+    // 指定カテゴリのランキングを取得するイベントをbind
+    .click(function () {
+      initialize($(this).attr('id'));
+      return false; // for anchor
+    })
+  ;
+
+  // デフォルトランキング表示
+  google.setOnLoadCallback(initialize);
+}());
+
+function initialize(category) {
+  var feed = new google.feeds.Feed(rssUrl(category));
+  feed.setNumEntries(100);
+  feed.load(function (result) {
+    if (result.error) return;
+    var $ul_main_movies = $('ul.main-movies');
+    // カテゴリ変更時のために一度空にする
+    $ul_main_movies.empty();
+    for (var i = 0, len = result.feed.entries.length; i < len; i++) {
+      var entry = result.feed.entries[i];
+      $ul_main_movies.append(buildMovieBody(entry));
+    }
+  });
+}
+
 function buildMovieBody(entry) {
   var title = entry.title;
   var link = entry.link;
@@ -68,4 +104,9 @@ function ellipsisDescription(description) {
 }
 function extractMovieLength(content) {
   return content.match(/<strong>(\d+:\d+)<\/strong>/)[1];
+}
+
+function rssUrl(category) {
+  category = category || 'all';
+  return 'http://www.nicovideo.jp/ranking/fav/daily/'+category+'?rss=2.0&lang=ja-jp';
 }
