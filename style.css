@@ -135,13 +135,14 @@ ul.ranking li div.movie-image a img {
   margin: auto;
 }
 ul.ranking li div.movie-image a.capture img {
-  max-height: 128px;
-  max-width: 128px;
+  max-height: 100px;
+  max-width: 130px;
+  border: 1px solid #cccccc;
 }
 ul.ranking li div.movie-image div.movie-length {
   position: absolute;
   right: 9px;
-  bottom: 10px;
+  bottom: 11px;
   color: #ffffff;
   background: rgba(0,0,0,0.6);
 }
