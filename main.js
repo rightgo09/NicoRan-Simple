@@ -1,15 +1,19 @@
 (function() {
+  // メインカテゴリ組立
+  buildMainCategory();
+
   // Google feedsライブラリ読み込み
   google.load('feeds', '1');
 
   // ページ上部カテゴリアンカー
-  $('ul.nav>li>a')
+  $('ul#gnav>li>a')
     // href="#"をセットしないとポインタがクリック可にならない
     .each(function () {
       $(this).attr('href', '#');
     })
     // 指定カテゴリのランキングを取得するイベントをbind
     .click(function () {
+      buildSubCategory($(this).attr('id'));
       initialize($(this).attr('id'));
       return false; // for anchor
     })
@@ -19,9 +23,56 @@
   google.setOnLoadCallback(initialize);
 }());
 
+function categories() {
+  return [
+    { id: "all", name: "総合", snav: [] },
+    { id: "g_ent2", name: "エンタメ・音楽", snav: [
+      { id: "g_ent2", name: "合算" },
+      { id: "ent", name: "エンターテイメント" },
+      { id: "music", name: "音楽" },
+      { id: "sing", name: "歌ってみた" },
+      { id: "play", name: "演奏してみた" },
+      { id: "dance", name: "踊ってみた" },
+      { id: "vocaloid", name: "VOCALOID" },
+      { id: "nicoindies", name: "ニコインディーズ" },
+    ]},
+    { id: "g_culture2", name: "アニメ・ゲーム・絵", snav: [
+      { id: "g_culture2", name: "合算" },
+      { id: "anime", name: "アニメ" },
+      { id: "game", name: "ゲーム" },
+      { id: "toho", name: "東方" },
+      { id: "imas", name: "アイドルマスター" },
+      { id: "radio", name: "ラジオ" },
+      { id: "draw", name: "描いてみた" },
+    ]},
+  ];
+}
+
+function buildMainCategory() {
+  var categories_json = categories();
+  var $gnav = $('ul#gnav');
+  $.each(categories_json, function (i, gnav) {
+    $gnav.append('<li><a id="'+gnav.id+'">'+gnav.name+'</a></li>');
+  });
+  buildSubCategory();
+}
+function buildSubCategory(category) {
+  category = category || 'all';
+  var categories_json = categories();
+  var $snav = $('ul#snav');
+  $.each(categories_json, function (i, gnav) {
+    if (gnav.id === category) {
+      $.each(gnav.snav, function (j, snav) {
+        $snav.append('<li><a id="'+snav.id+'">'+snav.name+'</a></li>');
+      });
+      return false; // break
+    }
+  });
+}
+
 function initialize(category) {
   var feed = new google.feeds.Feed(rssUrl(category));
-  feed.setNumEntries(100);
+  feed.setNumEntries(5);
   feed.load(function (result) {
     if (result.error) return;
     var $ul_main_movies = $('ul.main-movies');
