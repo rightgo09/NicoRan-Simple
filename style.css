@@ -41,8 +41,9 @@ ul.nav li a {
   color: #444444;
   font-size: 80%;
 }
-ul.nav li:first a {
-  background-color: #cccccc;
+ul.nav li a:hover, ul.nav li a.selected {
+  background-color: #666666;
+  color: #ffffff;
 }
 #container {
   margin: 80px 20px 40px;

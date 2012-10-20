@@ -15,6 +15,9 @@
     .click(function () {
       buildSubCategory($(this).attr('id'));
       initialize($(this).attr('id'));
+      $('ul#gnav>li>a').removeClass('selected');
+      $(this).attr('class', 'selected');
+      $('ul#snav>li:first a').addClass('selected');
       return false; // for anchor
     })
   ;
@@ -81,6 +84,7 @@ function buildMainCategory() {
   $.each(categories_json, function (i, gnav) {
     $gnav.append('<li><a id="'+gnav.id+'">'+gnav.name+'</a></li>');
   });
+  $('ul#gnav>li:first a').addClass('selected');
   buildSubCategory();
 }
 function buildSubCategory(category) {
@@ -99,6 +103,8 @@ function buildSubCategory(category) {
         })
         .click(function () {
           initialize($(this).attr('id'));
+          $('ul#snav>li>a').removeClass('selected');
+          $(this).attr('class', 'selected');
           return false;
         })
       ;
