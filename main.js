@@ -23,6 +23,8 @@
   google.setOnLoadCallback(initialize);
 }());
 
+MAX_RANKING_NUMBER = 100;
+
 function categories() {
   return [
     { id: "all", name: "総合", snav: [] },
@@ -36,6 +38,25 @@ function categories() {
       { id: "vocaloid", name: "VOCALOID" },
       { id: "nicoindies", name: "ニコインディーズ" },
     ]},
+    { id: "g_life2", name: "生活・一般・スポ", snav: [
+      { id: "g_life2", name: "合算" },
+      { id: "animal", name: "動物" },
+      { id: "cooking", name: "料理" },
+      { id: "nature", name: "自然" },
+      { id: "travel", name: "旅行" },
+      { id: "sport", name: "スポーツ" },
+      { id: "lecture", name: "ニコニコ動画講座" },
+      { id: "drive", name: "車載動画" },
+      { id: "history", name: "歴史" },
+    ]},
+    { id: "g_politics", name: "政治", snav: [] },
+    { id: "g_tech", name: "科学・技術", snav: [
+      { id: "g_tech", name: "合算" },
+      { id: "science", name: "科学" },
+      { id: "tech", name: "ニコニコ技術部" },
+      { id: "handcraft", name: "ニコニコ手芸部" },
+      { id: "make", name: "作ってみた" },
+    ]},
     { id: "g_culture2", name: "アニメ・ゲーム・絵", snav: [
       { id: "g_culture2", name: "合算" },
       { id: "anime", name: "アニメ" },
@@ -44,6 +65,12 @@ function categories() {
       { id: "imas", name: "アイドルマスター" },
       { id: "radio", name: "ラジオ" },
       { id: "draw", name: "描いてみた" },
+    ]},
+    { id: "g_other", name: "その他", snav: [
+      { id: "g_other", name: "合算" },
+      { id: "are", name: "例のアレ" },
+      { id: "diary", name: "日記" },
+      { id: "other", name: "その他" },
     ]},
   ];
 }
@@ -60,11 +87,21 @@ function buildSubCategory(category) {
   category = category || 'all';
   var categories_json = categories();
   var $snav = $('ul#snav');
+  $snav.empty();
   $.each(categories_json, function (i, gnav) {
     if (gnav.id === category) {
       $.each(gnav.snav, function (j, snav) {
         $snav.append('<li><a id="'+snav.id+'">'+snav.name+'</a></li>');
       });
+      $('ul#snav>li>a')
+        .each(function () {
+          $(this).attr('href', '#');
+        })
+        .click(function () {
+          initialize($(this).attr('id'));
+          return false;
+        })
+      ;
       return false; // break
     }
   });
@@ -72,7 +109,7 @@ function buildSubCategory(category) {
 
 function initialize(category) {
   var feed = new google.feeds.Feed(rssUrl(category));
-  feed.setNumEntries(5);
+  feed.setNumEntries(MAX_RANKING_NUMBER);
   feed.load(function (result) {
     if (result.error) return;
     var $ul_main_movies = $('ul.main-movies');
